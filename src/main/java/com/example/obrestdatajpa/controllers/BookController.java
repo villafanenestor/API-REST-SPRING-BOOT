@@ -2,6 +2,8 @@ package com.example.obrestdatajpa.controllers;
 
 import com.example.obrestdatajpa.models.Book;
 import com.example.obrestdatajpa.repositories.BookRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +34,7 @@ public class BookController {
     }
 
     @GetMapping("/api/books/{id}")
+    @Operation(description = "Permite buscar un libro por medio del ID", summary = "Este no es publico")
     public ResponseEntity<Book> findById(@PathVariable long id){
         Optional<Book> bookOptional = this.bookRepository.findById(id);
         if(bookOptional.isPresent()){
