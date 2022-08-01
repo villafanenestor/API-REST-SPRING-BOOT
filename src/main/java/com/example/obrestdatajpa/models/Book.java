@@ -1,10 +1,14 @@
 package com.example.obrestdatajpa.models;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "libros")
+@Schema(name = "CLase BOok", description = "Clase Book", title = "Libro")
 public class Book {
 
     @Id

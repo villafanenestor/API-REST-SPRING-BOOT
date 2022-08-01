@@ -2,8 +2,12 @@ package com.example.obrestdatajpa.controllers;
 
 import com.example.obrestdatajpa.models.Book;
 import com.example.obrestdatajpa.repositories.BookRepository;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Tag(name = "Libros", description = "Metodos para consumir libros")
 public class BookController {
 
     private Logger log= LoggerFactory.getLogger(BookController.class);
@@ -29,12 +34,14 @@ public class BookController {
 
 
     @GetMapping("/api/books")
-        public List<Book> findAll(){
+    @Hidden//Opcion para ocultar opcion desde el manual de la api
+    public List<Book> findAll(){
         return this.bookRepository.findAll();
     }
 
     @GetMapping("/api/books/{id}")
     @Operation(description = "Permite buscar un libro por medio del ID", summary = "Este no es publico")
+    @Parameter(name = "Id Book", example = "1", ref = "Defecto" )
     public ResponseEntity<Book> findById(@PathVariable long id){
         Optional<Book> bookOptional = this.bookRepository.findById(id);
         if(bookOptional.isPresent()){
