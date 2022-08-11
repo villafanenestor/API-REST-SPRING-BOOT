@@ -3,12 +3,15 @@ package com.example.obrestdatajpa.controllers;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
+    @Value("${app.variable}")
+    String author;
     @GetMapping("/hola")
     public String holaMundo(){
         return "Hola mundo refresh";
@@ -30,6 +33,11 @@ public class HelloController {
                     <a class="btn btn-primary" href="http://localhost:8080/swagger-ui/index.html">Ir a la Documentacion</a>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
                   </body>
+                  
+                  <footer> <p>"""+ author +
+                """
+                  </p>
+                  </footer>
                 </html>
                 
                 
