@@ -12,6 +12,9 @@ public class HelloController {
 
     @Value("${app.variable}")
     String author;
+
+    @Value("${app.swaggerurl}")
+    String swaggerUrl;
     @GetMapping("/hola")
     public String holaMundo(){
         return "Hola mundo refresh";
@@ -30,7 +33,9 @@ public class HelloController {
                   </head>
                   <body>
                     <h1>ESTE ES UN API REST REALIZADA CON SPRING BOOT</h1>
-                    <a class="btn btn-primary" href="http://localhost:8080/swagger-ui/index.html">Ir a la Documentacion</a>
+                    <a class="btn btn-primary" href=\""""+swaggerUrl+
+                    """
+                    \">Ir a la Documentacion</a>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
                   </body>
                   
